@@ -1,7 +1,6 @@
 import { Inngest } from "inngest";
-import { connectDB } from "./mongoDB";
-import { UserModel } from "@/models/user";
-
+import { connectDB } from './mongoDB.js';
+import userModel from '../models/userModel.js';
 // Create a client to send and receive events
 export const inngest = new Inngest({ id: "next.js" });
 export const syncUser = inngest.createFunction({
@@ -19,7 +18,7 @@ async ({event})=>{
         image_url:image_url
         }
         await connectDB()
-        await UserModel.create(userData)
+        await userModel.create(userData)
 }
 )
 // function to update  user data 
@@ -38,7 +37,7 @@ async({event})=>{
         image_url:image_url
         }
         await connectDB()
-        await UserModel.findByIdAndUpdate(id,userData)
+        await userModel.findByIdAndUpdate(id,userData)
 }
 )
 // inngesst gunction delete 
@@ -51,6 +50,6 @@ export const deleteUser=inngest.createFunction({
 async({event})=>{
            const {id,first_name,last_name,email_addresses,image_url}=event.data
            await connectDB()
-           await UserModel.findByIdAndDelete(id)
+           await userModel.findByIdAndDelete(id)
 }
 )
