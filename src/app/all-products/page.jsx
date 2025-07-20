@@ -2,6 +2,7 @@
 
 import Footer from "../../../components/Footer";
 import Navbar from "../../../components/Navbar";
+import ProductCard from "../../../components/ProductCard";
 import { useAppContext } from "../../../context/AppContext";
 
 
